@@ -1,5 +1,304 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  font-family: var(--main-font-family);
+  background-color: var(--main-bg-color);
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--main-text-color);
+}
+
+.header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr min-content 1fr;
+  justify-items: end;
+  align-items: center;
+  padding: var(--main-gap);
+  font-size: var(--main-text-size);
+  block-size: 100vh;
+  min-block-size: 668px;
+}
+
+.decorated-zone::before {
+  content: '';
+  position: absolute;
+  border-inline-end: 1px solid var(--nav-color);
+  border-block-start: 1px solid var(--nav-color);
+  inline-size: 25px;
+  block-size: 25px;
+  inset-inline-end: var(--main-gap);
+  inset-block-start: var(--main-gap);
+}
+
+.decorated-zone::after {
+  content: '';
+  position: absolute;
+  border-inline-start: 1px solid var(--nav-color);
+  border-block-end: 1px solid var(--nav-color);
+  inline-size: 25px;
+  block-size: 25px;
+  inset-inline-start: var(--main-gap);
+  inset-block-end: var(--main-gap);
+}
+
+.header__rec {
+  position: absolute;
+  color: var(--nav-color);
+  line-height: var(--main-line-height);
+  inset-inline-end: calc(var(--main-gap) + 28px);
+  inset-block-start: calc(var(--main-gap) + 2px);
+  text-transform: uppercase;
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--main-gap);
+  list-style: none;
+}
+
+
+.header__theme-menu-button {
+  border: 1px solid transparent;
+  padding: 2px 12px 4px;
+  color: var(--nav-color);
+  line-height: 1;
+  text-align: center;
+  text-transform: lowercase;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: var(--main-text-size);
+}
+
+.header__theme-menu-button_active {
+  border: 1px solid var(--nav-color);
+  pointer-events: none
+}
+
+.header__theme-menu-button:hover {
+  border: 1px solid var(--nav-hover-color);
+}
+
+.header__theme-menu-button:focus {
+  border-block-end: 1px solid var(--nav-color);
+  outline: none;
+}
+
+.header__logo {
+  color: var(--logo-color);
+  font-size: var(--logo-size);
+  line-height: var(--logo-line-height);
+  text-shadow: 4px 4px 0 var(--accent-color);
+}
+
+.title-decor {
+  color: var(--text-decoration-color);
+  background-color: var(--accent-color);
+}
+
+.header__paragraph {
+  font-weight: bold;
+  line-height: var(--main-line-height);
+}
+
+.header__rec::after {
+  content: '';
+  position: absolute;
+  inline-size: var(--radius-size);
+  block-size: var(--radius-size);
+  border-radius: 50%;
+  background: var(--accent-color);
+  box-shadow: 0 0 4px 2px var(--nav-hover-color);
+  inset-inline-start: 130%;
+  inset-block-start: 50%;
+  margin-block-start: -4px;
+}
+
+.content {
+  padding: calc(4 * var(--main-gap)) var(--main-gap);
+  font-size: var(--main-text-size);
+  line-height: var(--main-line-height);
+}
+
+.content-section__title {
+  color: var(--accent-color);
+  font-size: var(--main-text-size);
+  margin-block-end: calc(2 * var(--main-gap));
+  line-height: var(--main-line-height);
+}
+
+.text-block__heading {
+  font-size: var(--main-text-size);
+  line-height: var(--main-line-height);
+}
+
+.text-block__paragraph {
+  margin-block-start: var(--main-gap);
+}
+
+.text-block {
+  margin-block-start: calc(2* var(--main-gap));
+}
+
+.content-section:not(:last-of-type) {
+  margin-block-end: calc(5 * var(--main-gap));
+}
+
+.content-link {
+  text-decoration: none;
+  text-shadow: 2px 2px 0 var(--accent-color);
+}
+
+.content-link:hover {
+  border-block-end: 1px solid var(--main-text-color);
+}
+
+.content-link:focus {
+  outline: none;
+}
+
+.content-link:focus-visible {
+  outline: 1px solid var(--main-text-color);
+}
+
+.text-block__subheading {
+  font-weight: normal;
+}
+
+.grid-heading {
+  font-size: var(--main-text-size);
+}
+
+.grid {
+  display: grid;
+  gap: var(--main-gap);
+}
+
+.grid__image {
+  inline-size: 100%;
+}
+
+.footer {
+  block-size: 100vh;
+  min-block-size: 668px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--main-gap);
+}
+
+.footer-logo {
+  color: var(--logo-color);
+  font-size: var(--logo-size);
+  line-height: var(--logo-line-height);
+  text-shadow: 2px 2px 0 var(--accent-color);
+}
+
+@media (width >= 768px) {
+  .header__logo {
+    justify-self: start;
+    position: relative;
+    inset-inline-start: calc(-1 * var(--main-gap));
+  }
+
+  .header__text {
+    inline-size: 50%;
+  }
+
+  .header__theme-menu-list {
+    gap: calc(var(--main-gap)/2);
+  }
+
+  .content {
+    padding: calc(3 * var(--main-gap)) var(--main-gap);
+  }
+
+  .content-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--main-gap);
+  }
+
+  .content-section:not(:last-of-type) {
+    margin-block-end: calc(4 * var(--main-gap));
+  }
+
+  .content-section__title {
+    margin-block-end: 0;
+  }
+
+  .text-block {
+    margin-block-start: 0;
+  }
+
+  .text-block:not(:first-child) {
+    margin-block-start: var(--main-gap);
+  }
+
+  .text-block__paragraph {
+    margin-block-start: calc(var(--main-gap)/2);
+  }
+
+  .what .content-section__title {
+    grid-column: 1 / 2;
+  }
+
+  .what .text-blocks {
+    grid-column: 1 / -1;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-heading {
+    grid-column: 1 / -1;
+  }
+
+  .grid__image {
+    object-fit: cover;
+    object-position: center;
+    block-size: 100%;
+  }
+
+  .grid__image:first-of-type {
+    grid-column: span 2;
+  }
+
+  .grid__image:nth-of-type(2) {
+    grid-row: span 2;
+  }
+
+  .grid__image:nth-of-type(3) {
+    grid-row: span 2;
+  }
+
+  .grid__image:nth-of-type(5) {
+    grid-column: span 2;
+  }
+}
+
+@media (width >= 1024px) {
+  .header__theme-menu-list {
+    flex-direction: row;
+  }
+
+  .header__theme-menu {
+    justify-self: center;
+    align-self: start;
+  }
+
+  .what .text-blocks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--main-gap);
+  }
+
+  .what .text-block {
+    margin-block-start: 0;
+  }
 }
